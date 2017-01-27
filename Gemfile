@@ -15,3 +15,5 @@ group :development, :test do
     gem dep, version
   end
 end
+
+gem 'jekyll-multiple-languages-plugin', '~> 1.5.1'

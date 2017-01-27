@@ -50,11 +50,11 @@
 {% endif %}
 
 {% if page.description %}
-{% assign seo_description = page.description %}
+  {% assign seo_description = page.description %}
 {% elsif page.description_i18n %}
-{% capture seo_decsription %}
-{% t page.description_i18n %}
-{% endcapture %}
+  {% capture seo_decsription %}
+   {% t page.description_i18n %}
+  {% endcapture %}
 {% endif %}
 {% if seo_description %}
   {% assign seo_description = seo_description | markdownify | strip_html | normalize_whitespace | escape_once %}
