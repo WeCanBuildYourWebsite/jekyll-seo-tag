@@ -6,17 +6,17 @@
 
 {% assign seo_site_title = site.title | default: site.name %}
 
-{% if page.title %}
+{% if seo_tag.my_title  %}
+  {% assign seo_title = seo_tag.my_title %}
+  {% assign seo_page_title = seo_tag.my_title %}
+
+{% elsif page.title %}
   {% assign seo_title = page.title %}
   {% assign seo_page_title = page.title %}
 
   {% if seo_site_title %}
     {% assign seo_title = seo_title | append:" - " | append: seo_site_title %}
   {% endif %}
-{% elsif page.title_i18n %}
-  {% capture seo_title %}
-    {% t page.title_i18n %}
-  {% endcapture %}
 {% elsif seo_site_title %}
   {% assign seo_title = seo_site_title %}
   {% assign seo_page_title = seo_site_title %}
@@ -49,13 +49,7 @@
   {% assign seo_page_title = seo_page_title | smartify | strip_html | normalize_whitespace | escape_once %}
 {% endif %}
 
-{% if page.description %}
-  {% assign seo_description = page.description %}
-{% elsif page.description_i18n %}
-  {% capture seo_decsription %}
-   {% t page.description_i18n %}
-  {% endcapture %}
-{% endif %}
+{% assign seo_description = page.description | default: page.excerpt | default: site.description %}
 {% if seo_description %}
   {% assign seo_description = seo_description | markdownify | strip_html | normalize_whitespace | escape_once %}
 {% endif %}

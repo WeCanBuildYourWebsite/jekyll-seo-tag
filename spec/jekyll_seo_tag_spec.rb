@@ -432,6 +432,27 @@ EOS
     end
   end
 
+  context "with my_title='custom title'" do
+    let(:text) { "my_title=\"custom title\"" }
+    
+    it "output a <title> tag" do
+      expect(output).to match(%r!<title>custom title</title>!)
+      expected = %r!<meta property="og:title" content="custom title" />!
+      expect(output).to match(expected)
+    end
+  end
+
+  context "with my_title='custom title'" do
+    let(:text) { "my_title=\"custom title\"" }
+    
+    it "output a <title> tag" do
+      expect(output).to match(%r!<title>custom title</title>!)
+      expected = %r!<meta property="og:title" content="custom title" />!
+      expect(output).to match(expected)
+    end
+  end
+
+
   context "with pagination" do
     let(:context) { make_context({}, "paginator" => paginator) }
 

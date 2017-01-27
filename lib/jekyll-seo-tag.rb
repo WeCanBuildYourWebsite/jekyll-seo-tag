@@ -30,7 +30,8 @@ module Jekyll
     def options
       {
         "version" => Jekyll::SeoTag::VERSION,
-        "title"   => title?
+        "title"   => title?,
+        "my_title" => my_title
       }
     end
 
@@ -38,13 +39,17 @@ module Jekyll
       {
         "page"      => context.registers[:page],
         "site"      => context.registers[:site].site_payload["site"],
-        "paginator" => context["paginator"],
+        "paginator" => context["paginator"], 
         "seo_tag"   => options
       }
     end
 
     def title?
       !(@text =~ %r!title=false!i)
+    end
+
+    def my_title
+      @text[/my_title="([^"]*)"/m, 1]
     end
 
     def info
